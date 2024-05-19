@@ -4,7 +4,6 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        AWS_DEFAULT_REGION    = 'ap-south-1'
     }
 
     stages {
@@ -16,7 +15,7 @@ pipeline {
         }
         stage('Plan') {
             steps {
-                sh 'terraform plan -out=plan.out'
+                sh 'terraform plan'
             }
         }
         stage('Terraform Apply') {
