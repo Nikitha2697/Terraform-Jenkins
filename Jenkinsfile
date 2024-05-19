@@ -13,9 +13,14 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout SCM') {
             steps {
-                git branch: 'main', url: 'https://github.com/Nikitha2697/jenkins-scripts.git'
+                checkout([$class: 'GitSCM', 
+                          branches: [[name: '*/main']], 
+                          doGenerateSubmoduleConfigurations: false, 
+                          extensions: [], 
+                          submoduleCfg: [], 
+                          userRemoteConfigs: [[url: 'https://github.com/Nikitha2697/jenkins-scripts.git', credentialsId: 'Nikitha2697']]])
             }
         }
         stage('Terraform init') {
