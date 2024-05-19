@@ -1,8 +1,12 @@
-resource "aws_instance" "public_instance" {
- ami           = var.ami
- instance_type = var.instance_type
+provider "aws" {
+  region = "ap-south-1"
+}
 
- tags = {
-   Name = var.name_tag,
- }
+resource "aws_instance" "myec2" {
+  ami           = "ami-0cc9838aa7ab1dce7"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "Instance"
+  }
 }
